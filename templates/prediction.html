@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Credit Card Fraud Detection</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="{{ url_for('index')}}" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 display-5 text-uppercase text-primary">Credit Fraud</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav m-auto py-0">
+                    <a href="{{ url_for('index')}}" class="nav-item nav-link">Home</a>
+                    <a href="{{ url_for('login')}}" class="nav-item nav-link">Login</a>
+                    <a href="{{ url_for('analysis')}}" class="nav-item nav-link">Analysis</a>
+                    <a href="{{ url_for('prediction')}}" class="nav-item nav-link active">Prediction</a>
+                    <a href="{{ url_for('index')}}" class="nav-item nav-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid mb-5">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-3">About</h1>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <h4 style="margin-left: 15px;">XGB Classifier :</h4>
+    <br>
+    <table style="margin-left: 25px;">
+        <form id="form1" action="{{ url_for('predict')}}" method="post">
+            <tr>
+                <td>
+                    <label for="max_fre">max_fre :</label>
+                </td>
+                <td>
+                    <input id="max_fre" name="max_fre" type="number" placeholder="13" step="0.01"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="min_fre">min_fre :</label>
+                </td>
+                <td>
+                    <input id="min_fre" name="min_fre" type="number" placeholder="13"
+                        step="0.01"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="var_fre1">var_fre1 :</label>
+                </td>
+                <td>
+                    <input id="var_fre1" name="var_fre1" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="var_fre2">var_fre2 :</label>
+                </td>
+                <td>
+                    <input id="var_fre2" name="var_fre2" type="number" placeholder="13" step="0.01"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="var_fre3">var_fre3 :</label>
+                </td>
+                <td>
+                    <input id="var_fre3" name="var_fre3" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="var_fre4">var_fre4 :</label>
+                </td>
+                <td>
+                    <input id="var_fre4" name="var_fre4" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="var_fre5">var_fre5 :</label>
+                </td>
+                <td>
+                    <input id="var_fre5" name="var_fre5" type="number"
+                        placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="manufacturing_costs">var_amp1 :</label>
+                </td>
+                <td>
+                    <input id="manufacturing_costs" name="manufacturing_costs" type="number" placeholder="13"
+                        step="0.01"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="inspection_results">var_amp2 :</label>
+                </td>
+                <td>
+                    <input id="inspection_results" name="inspection_results" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="defect_rates">var_amp3 :</label>
+                </td>
+                <td>
+                    <input id="defect_rates" name="defect_rates" type="number" placeholder="13" step="0.01"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="routes">var_amp4 :</label>
+                </td>
+                <td>
+                    <input id="routes" name="routes" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v12">var_amp5 :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v12" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v13">var_amp6 :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v13" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v14">NHR :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v14" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v15">HNR :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v15" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v16">RPDE :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v16" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v17">DFA :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v17" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="v18">spread1 :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v18" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v19">spread2 :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v19" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v20">D2 :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v20" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="v21">PPE :</label>
+                </td>
+                <td>
+                    <input id="costs" name="v21" type="number" placeholder="13"><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+                <td>
+                    <button type="reset">Reset</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+    <br>
+    <div style="margin-left: 25px;">
+        <h6>Output : 0 - Not Detected || 1 - Detected </h6>
+        <p>Status : {{ x | safe}}</p>
+    </div>
+    <br>
+    <br>
+    <!-- Footer Start -->
+
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
